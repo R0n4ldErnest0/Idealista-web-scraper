@@ -260,7 +260,7 @@ def get_all_house_info(house_ids:list):
     print("Se terminó de extraer la data de todas las casas.")
     print("Guardando en un json...")
 
-    with open("web_scraping_idealista_bclnhouses/house_htmls_total.json","w",encoding="utf-8") as json_file:
+    with open("house_htmls_total.json","w",encoding="utf-8") as json_file:
         json.dump(house_htmls,json_file,indent=4,ensure_ascii=False)
     print("Se guardó exitosamente la información de las casas de Barcelona")
 
@@ -268,7 +268,7 @@ def get_all_house_info(house_ids:list):
     #     json.dump(all_house_info,json_file,indent=4,ensure_ascii=False)
     # print("Se guardó exitosamente la información de las casas de Barcelona")
 
-    with open("web_scraping_idealista_bclnhouses/failed_houses.json","w",encoding="utf-8") as json_file:
+    with open("failed_houses.json","w",encoding="utf-8") as json_file:
         json.dump(failed_house_ids,json_file,indent=4,ensure_ascii=False)
 
     print(len(house_ids))
@@ -282,7 +282,7 @@ def get_all_house_info(house_ids:list):
 def get_all_house_info_by_html():
     failed_house_ids=[]
     all_house_info=[]
-    with open("web_scraping_idealista_bclnhouses/house_htmls.json", 'r',encoding="utf-8") as f:
+    with open("house_htmls.json", 'r',encoding="utf-8") as f:
         house_html_strings=json.load(f) 
     print("Cantidad de casas para extraer información :" + str(len(house_html_strings)))
     for i,house_html_str in enumerate(house_html_strings):
@@ -299,11 +299,11 @@ def get_all_house_info_by_html():
     print("Se terminó de extraer la data de todas las casas.")
     print("Guardando en un json...")
 
-    with open("web_scraping_idealista_bclnhouses/bcln_houses_data.json","w",encoding="utf-8") as json_file:
+    with open("bcln_houses_data.json","w",encoding="utf-8") as json_file:
         json.dump(all_house_info,json_file,indent=4,ensure_ascii=False)
     print("Se guardó exitosamente la información de las casas de Barcelona")
 
-    with open("web_scraping_idealista_bclnhouses/failed_houses.json","w",encoding="utf-8") as json_file:
+    with open("failed_houses.json","w",encoding="utf-8") as json_file:
         json.dump(failed_house_ids,json_file,indent=4,ensure_ascii=False)
     
     print("-------------------")
@@ -321,7 +321,7 @@ def create_csv_from_json(data:list):
     columns = data[0].keys()
     columns = list(set(columns))
 
-    with open("web_scraping_idealista_bclnhouses/bcln_houses_data.csv", 'wb') as out_file:
+    with open("bcln_houses_data.csv", 'wb') as out_file:
         csv_w = csv.writer(out_file)
         csv_w.writerow(columns)
 
@@ -340,7 +340,7 @@ def response_to_json(self,responseLoad,name:str):
 if __name__ == "__main__":
     #house_ids=get_all_house_ids()
     #print(house_ids)
-    with open("web_scraping_idealista_bclnhouses/house_ids_list", 'r',encoding="utf-8") as f:
+    with open("house_ids_list", 'r',encoding="utf-8") as f:
         house_ids=json.load(f)
     print(len(house_ids))
     house_ids=list(set(house_ids))
